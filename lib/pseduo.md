@@ -1,6 +1,7 @@
 class UserInterface
 
 start game
+
 take player names
 prompt name & X for plyr 1 - O for plyr 2
 display board
