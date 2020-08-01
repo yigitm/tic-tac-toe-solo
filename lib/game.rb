@@ -8,10 +8,12 @@ store selections
 check win or draw status
     
 =end
+require_relative '../lib/board.rb'
 class Control
-attr_accessor :names 
+attr_accessor :name_1,:name_2 
  def initialize
-    @names = names
+    @name_1 = name_1
+    @name_2 = name_2
  end
 
 

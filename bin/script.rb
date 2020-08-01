@@ -1,25 +1,22 @@
 #!/usr/bin/env ruby
 require_relative '../lib/board.rb'
 require_relative '../lib/game.rb'
-
-view = View.new
+name_1 = Control.new
+name_2 = Control.new
+board = View.new
 picks = View.new
-names = Control.new
-names = []
-picks = []
 
-  2.times do 
-  puts "Please type your Name"
-  names << gets.chomp
+  puts "Please type first player name"
+  name_1 = gets.chomp
+  puts "Please type second player name"
+  name_2 = gets.chomp
+
+  picks.view_board
+  3.times do  
+  puts "Pick any number from 1 to 9"
+  picks.view_board(input = gets.chomp)
   end
-  puts "Pick any number from the board"
-  view.board
-  3.times do
-  picks << gets.chomp
-  view.board
-  end
-  p picks
-  
+
 =begin  
 puts "Display current player turn"
 puts "Display choice with 'X' & 'O' "
