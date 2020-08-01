@@ -1,27 +1,32 @@
 #!/usr/bin/env ruby
-class UserInterface
+require_relative '../lib/board.rb'
+require_relative '../lib/game.rb'
 
-names = Array.new(2)
-turn_counter = 9
-selections = [[],[]]
+view = View.new
+picks = View.new
+names = Control.new
+names = []
+picks = []
 
-  names.length.times do 
-  puts "Please type your Name & Press enter"
+  2.times do 
+  puts "Please type your Name"
   names << gets.chomp
   end
-
-  turn_counter.times do
-  puts "Select a number from board"
-  selections << gets.chomp
+  puts "Pick any number from the board"
+  view.board
+  3.times do
+  picks << gets.chomp
+  view.board
   end
-puts "Board"
+  p picks
+  
+=begin  
 puts "Display current player turn"
 puts "Display choice with 'X' & 'O' "
 puts "Invalid Move"
 puts "Game Over Win!"
 puts "Game Over Draw!"
-   
+=end
 
-end
 
-start = UserInterface.new
+
