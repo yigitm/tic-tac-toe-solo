@@ -1,78 +1,43 @@
 require_relative '../lib/game.rb'
 class View < Control
-attr_accessor :board,:picks,:index
+attr_accessor :board
   def initialize
     @board = [1,2,3,4,5,6,7,8,9]
-    @picks = picks
-    @index = index
-  end
-
-  def make_row(number,input)
-    if number % 3 == 0 || number == 3 || number == 6 || number == 9
-      puts
-      puts  "------------"
-      puts
-    end
+    @picks = ["X","O"]
+    @counter = 0
+    @row_item = 1
   end
   
-  def make_X(number)
-     @board.delete(number)
-     @board.insert(@index, "X")
-     print_update(number)
-  end
-
-  def make_O(number)
-     @board.delete(number)
-     @board.insert(@index, "O")
-     print_update(number)
-  end
-
-  def indish(input)
-   @index = @board.find_index(input)
-  end
-
-  def print_update(number)
-    print @board[@index]
-  end
-  
-  def update_board(number, input)
-    if input.to_i == number && number.odd?
-      indish(number)
-      make_X(number)
-      make_row(number,input)
-      
-      elsif input.to_i == number && number.even?
-      indish(number)
-      make_O(number)
-      make_row(number,input)
-      
-      elsif input.to_i != number
-      print " #{number} |"
-      make_row(number,input)
+  def convert_selection(input)
+    @board.delete_at(input.to_i - 1)
+    if input.to_i.odd?
+      @board.insert((input.to_i - 1),"X")
+     else
+       @board.insert((input.to_i - 1),"O")
     end
   end
 
-  def board(input = nil)
-     @board.each do |number| 
-      if input != nil
-        update_board(number, input)
-      elsif number % 3 == 0 && input == nil
-        print " #{number} |" 
-        make_row(number,input)
+  def print_update
+     puts "---------------"
+     @board.each do |item| 
+      if @row_item == 3
+        puts "| #{item} |"
+        puts "---------------"
+        @row_item -= 2
       else
-        print " #{number} |"
-        make_row(number,input)
-       end
+        print "| #{item} |"
+        @row_item += 1
+      end
      end
   end
   
+  def update_board(input = nil)
+    if input != nil
+      convert_selection(input)
+      print_update
+     else
+      print_update
+    end
+  end
+      
 end
-
-=begin
-class Board
-
-create initial board
-display board
-place player selections with X or O
-
-=end
