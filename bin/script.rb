@@ -10,16 +10,15 @@ control = Control.new
   
   view.print_update
   9.times do  
-    puts "Pick any number from 1 to 9 \n"
-    control.turn_checker(name_1, name_2)
+    puts "Pick any number between 1 to 9 \n"
     view.display_board(input = gets.chomp)
+    control.turn_checker(name_1, name_2)
+    
     
   end
 
 =begin  
-puts "Display current player turn"
 puts "Invalid Move"
 puts "Game Over Win!"
 puts "Game Over Draw!"
 =end
-

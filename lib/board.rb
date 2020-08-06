@@ -7,7 +7,16 @@ attr_accessor :board
     @row_item = 1
   end
   
-  def convert_selection(input)
+  def display_board(input = nil)
+    if input != nil
+      update_board(input)
+      print_update
+     else
+      print_update
+    end
+  end
+  
+  def update_board(input)
     @board.delete_at(input.to_i - 1)
     if input.to_i.odd?
       @board.insert((input.to_i - 1),"X")
@@ -29,14 +38,5 @@ attr_accessor :board
       end
      end
   end
-  
-  def display_board(input = nil)
-    if input != nil
-      convert_selection(input)
-      print_update
-     else
-      print_update
-    end
-  end
-      
+   
 end
