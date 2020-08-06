@@ -3,7 +3,6 @@ class View < Control
 attr_accessor :board
   def initialize
     @board = [1,2,3,4,5,6,7,8,9]
-    @picks = ["X","O"]
     @counter = 0
     @row_item = 1
   end
@@ -31,7 +30,7 @@ attr_accessor :board
      end
   end
   
-  def update_board(input = nil)
+  def display_board(input = nil)
     if input != nil
       convert_selection(input)
       print_update

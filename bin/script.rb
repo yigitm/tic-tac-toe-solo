@@ -1,19 +1,19 @@
 #!/usr/bin/env ruby
 require_relative '../lib/board.rb'
 require_relative '../lib/game.rb'
-name_1 = Control.new
-name_2 = Control.new
 view = View.new
-
+control = Control.new
   puts "Please type first player name"
   name_1 = gets.chomp
   puts "Please type second player name"
   name_2 = gets.chomp
-
+  
   view.print_update
   9.times do  
-  puts "Pick any number from 1 to 9 \n"
-  view.update_board(input = gets.chomp)
+    puts "Pick any number from 1 to 9 \n"
+    control.turn_checker(name_1, name_2)
+    view.display_board(input = gets.chomp)
+    
   end
 
 =begin  
