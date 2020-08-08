@@ -24,9 +24,9 @@ attr_accessor :turn
 
  def turn_prompter(name_1, name_2)
    if @turn == false
-    "Your turn: #{name_1}"
+    puts "Your turn: #{name_1}"
    else
-    "Your turn: #{name_2}"
+    puts "Your turn: #{name_2}"
    end
  end
 

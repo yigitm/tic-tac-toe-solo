@@ -8,17 +8,22 @@ attr_accessor :board,:display_board,:input
     @input = input
   end
   
-  def display_board(input)
+  def display_board(input, name_1, name_2)
       if input_checker(input) == false
         puts "Invalid! 1-9 number entry"
+        turn_prompter(name_1, name_2)
+        puts @turn
         print_update
       elsif @board[(input.to_i) - 1].class == String
         puts "Invalid! Select another number"
+        turn_prompter(name_1, name_2)
+        puts @turn
         print_update
       else
         turn_switcher(input)
         update_board(input, turn)
         print_update
+        turn_prompter(name_1, name_2)
       end  
   end
   

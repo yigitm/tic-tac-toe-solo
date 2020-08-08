@@ -8,13 +8,11 @@ control = Control.new
   puts "Please type second player name"
   name_2 = gets.chomp
   view.print_update
-  puts control.turn_prompter(name_1, name_2)
+  control.turn_prompter(name_1, name_2)
   9.times do
-    puts "Pick any number between 1 to 9" 
+    puts "Pick any number between 1 to 9"
     control.input_checker(input = gets.chomp)
-    view.display_board(input)
-    control.turn_switcher(input)
-    puts control.turn_prompter(name_1, name_2)
+    view.display_board(input, name_1, name_2)
   end
 
 =begin
