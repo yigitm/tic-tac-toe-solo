@@ -16,31 +16,33 @@ attr_accessor :board,:display_board,:input
         puts "Invalid! Select another number"
         print_update
       else
-        update_board(input)
+        turn_switcher(input)
+        update_board(input, turn)
         print_update
       end  
   end
   
-  def update_board(input)
-    @board.delete_at(input.to_i - 1)
-    if input.to_i.odd?
-      @board.insert((input.to_i - 1),"X")
-     else
-       @board.insert((input.to_i - 1),"O")
+  def update_board(input, turn)
+    if @turn == false
+      @board.delete_at(input.to_i - 1)
+      @board.insert((input.to_i - 1),"O")
+    elsif @turn == true
+       @board.delete_at(input.to_i - 1)
+       @board.insert((input.to_i - 1),"X")
     end
   end
 
   def print_update
      puts "---TicTacToe---"
      @board.each do |item| 
-      if @row_item == 3
-        puts "| #{item} |"
-        puts "---------------"
-        @row_item -= 2
-      else
-        print "| #{item} |"
-        @row_item += 1
-      end
+        if @row_item == 3
+          puts "| #{item} |"
+          puts "---------------"
+          @row_item -= 2
+        else
+          print "| #{item} |"
+          @row_item += 1
+        end
      end
   end
    
