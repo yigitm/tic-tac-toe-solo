@@ -36,4 +36,18 @@ attr_accessor :turn
    end
  end
 
+  def user_choice_taker(input)
+   @user_choices.push(input.to_i)
+   puts "user_selections #{@user_choices}\n"
+  end
+
+  def result_checker(input)
+    if @user_choices.index(input.to_i) % 2 == 0 || @user_choices.index(input.to_i) == 0 
+      @user_1_selects << input
+    else 
+      @user_2_selects << input
+    end
+     print "user_1 #{@user_1_selects}\n" 
+     puts "user_2 #{@user_2_selects}"
+  end
 end
