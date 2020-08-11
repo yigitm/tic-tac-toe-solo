@@ -17,6 +17,7 @@ control = Control.new
     end
   }
   view.cycle_maker(&game_cycle)
+  
 
 =begin
 puts "Game Over Win!"

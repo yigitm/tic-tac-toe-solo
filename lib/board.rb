@@ -11,10 +11,6 @@ attr_accessor :board,:cycle_counter,:input,
     @user_1_selects = []
     @user_2_selects = []
   end
-
-  def cycle_maker(&game_cycle)
-    yield(game_cycle)
-  end
   
   def display_board(input, name_1, name_2)
       if input_checker(input) == false
@@ -28,12 +24,12 @@ attr_accessor :board,:cycle_counter,:input,
         puts @turn
         print_update
       else
+        user_choice_splitter(input)
+        result_checker(name_1, name_2)
         turn_switcher(input)
         update_board(input, turn)
         print_update
         turn_prompter(name_1, name_2)
-        user_choice_taker(input)
-        result_checker(input)
       end
   end
   

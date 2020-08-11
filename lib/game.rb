@@ -9,10 +9,18 @@ check win or draw status
 =end
 require_relative '../lib/board.rb'
 class Control
-attr_accessor :turn
+attr_accessor :turn,:win_parallel,:win_vertical,:win_cross,:check
  def initialize
     @turn = false
+    @@win_parallel = [[1,2,3],[4,5,6],[7,8,9]]
+    @@win_vertical = [[1,4,7],[2,5,8],[3,6,9]]
+    @@win_cross = [[1,5,9],[3,5,7]]
+    @match = check
  end
+
+def cycle_maker(&game_cycle)
+    yield(game_cycle)
+end
 
  def turn_switcher(input)
    if @turn == true
@@ -36,18 +44,20 @@ attr_accessor :turn
    end
  end
 
-  def user_choice_taker(input)
-   @user_choices.push(input.to_i)
-   puts "user_selections #{@user_choices}\n"
+  def user_choice_splitter(input)
+    @user_choices.push(input.to_i)
+    if @user_choices.index(input.to_i) % 2 == 0 || @user_choices.index(input.to_i) == 0 
+      @user_1_selects << input.to_i
+    else 
+      @user_2_selects << input.to_i
+    end
   end
 
-  def result_checker(input)
-    if @user_choices.index(input.to_i) % 2 == 0 || @user_choices.index(input.to_i) == 0 
-      @user_1_selects << input
-    else 
-      @user_2_selects << input
+  def result_checker(name_1, name_2)
+    if (@@win_parallel + @@win_vertical+ @@win_cross).one?(user_1_selects) == true
+       puts "#{name_1} win!"
+    elsif (@@win_parallel + @@win_vertical+ @@win_cross).one?(user_2_selects) == true
+      puts "#{name_2} win!"
     end
-     print "user_1 #{@user_1_selects}\n" 
-     puts "user_2 #{@user_2_selects}"
   end
 end
