@@ -1,14 +1,13 @@
 require_relative '../lib/game.rb'
 class View < Control
-attr_accessor :cycle_counter,:input,
+attr_accessor :input,
 :user_choices,:user_1_selects,:user_2_selects
   def initialize
-    @cycle_counter = false
     @input = input
-    @row_item = 1
     @user_choices = []
     @user_1_selects = []
     @user_2_selects = []
+    @row_item = 1
   end
   
   def display_board(input, name_1, name_2)
@@ -17,8 +16,9 @@ attr_accessor :cycle_counter,:input,
         turn_prompter(name_1, name_2)
         print_board
       else
-        user_choice_splitter(input)
+        input_splitter(input)
         result_checker(name_1, name_2)
+        game_exit
         turn_switcher(input)
         update_board(input, turn)
         print_board

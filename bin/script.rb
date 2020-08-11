@@ -10,11 +10,9 @@ control = Control.new
   view.print_board
   control.turn_prompter(name_1, name_2)
   game_cycle = Proc.new {
-    9.times do
-      puts "Pick any number between 1 to 9"
-      control.input_checker(input = gets.chomp)
-      view.display_board(input, name_1, name_2)
-    end
+    puts "Pick any number between 1 to 9"
+    control.input_checker(input = gets.chomp)
+    view.display_board(input, name_1, name_2)
   }
   view.cycle_maker(&game_cycle)
   
