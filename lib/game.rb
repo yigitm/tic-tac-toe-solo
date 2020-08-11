@@ -9,8 +9,9 @@ check win or draw status
 =end
 require_relative '../lib/board.rb'
 class Control
-attr_accessor :turn,:win_parallel,:win_vertical,:win_cross,:check
+attr_accessor :board,:turn,:win_parallel,:win_vertical,:win_cross,:check
  def initialize
+    @@board = [1,2,3,4,5,6,7,8,9]
     @turn = false
     @@win_parallel = [[1,2,3],[4,5,6],[7,8,9]]
     @@win_vertical = [[1,4,7],[2,5,8],[3,6,9]]
@@ -39,7 +40,7 @@ end
  end
 
  def input_checker(input)
-   if (1..9).any?(input.to_i) == false
+   if (1..9).any?(input.to_i) == false || @@board[(input.to_i) - 1].class == String
       return false
    end
  end
@@ -58,6 +59,12 @@ end
        puts "#{name_1} win!"
     elsif (@@win_parallel + @@win_vertical+ @@win_cross).one?(user_2_selects) == true
       puts "#{name_2} win!"
+    elsif @user_choices.length == 9
+      puts "No winner!" 
     end
+  end
+
+  def game_over
+    
   end
 end

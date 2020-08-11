@@ -7,7 +7,7 @@ control = Control.new
   name_1 = gets.chomp
   puts "Please type second player name"
   name_2 = gets.chomp
-  view.print_update
+  view.print_board
   control.turn_prompter(name_1, name_2)
   game_cycle = Proc.new {
     9.times do
