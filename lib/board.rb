@@ -1,12 +1,6 @@
 require_relative '../lib/game.rb'
 class View < Control
-attr_accessor :input,
-:user_choices,:user_1_selects,:user_2_selects
   def initialize
-    @input = input
-    @user_choices = []
-    @user_1_selects = []
-    @user_2_selects = []
     @row_item = 1
   end
   
@@ -17,20 +11,22 @@ attr_accessor :input,
         print_board
       else
         input_splitter(input)
-        result_checker(name_1, name_2)
-        game_exit
+        parallel_result_checker(name_1,name_2)
+        vertical_result_checker(name_1,name_2)
+        cross_result_checker(name_1,name_2)
         turn_switcher(input)
         update_board(input, turn)
         print_board
+        game_exit(name_1,name_2)
         turn_prompter(name_1, name_2)
       end
   end
   
   def update_board(input, turn)
-    if @turn == false
+    if @@turn == false
       @@board.delete_at(input.to_i - 1)
       @@board.insert((input.to_i - 1),"O")
-    elsif @turn == true
+    elsif @@turn == true
        @@board.delete_at(input.to_i - 1)
        @@board.insert((input.to_i - 1),"X")
     end
